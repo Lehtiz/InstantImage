@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import FirebaseConstext from '../context/firebase';
+import * as ROUTES from '../constants/routes';
 
 export default function Login() {
   const history = useHistory();
@@ -15,7 +16,21 @@ export default function Login() {
   // Basic validation on password and email fields being empty
   const isInvalid = password === '' || emailAddress === '';
 
-  const handleLogin = () => {};
+  // prevent default form functionality and use our own
+  // async because connection to firebase takes time
+  const handleLogin = async (event) => {
+    event.preventDefault();
+
+    try {
+      await firebase.auth().signInWithEmailAndPassword(emailAddress, password);
+      history.push(ROUTES.DASHBOARD);
+    } catch (error) {
+      // In case of error empty fields
+      setEmailAddress('');
+      setPassword('');
+      setError(error.message);
+    }
+  };
 
   // Runs on 1st render, can use brackets to run everytime given value changes
   // Change title to "Login - Instagram"
