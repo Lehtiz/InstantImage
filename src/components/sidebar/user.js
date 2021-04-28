@@ -27,6 +27,6 @@ export default User;
 
 // require props with types for functionality
 User.propTypes = {
-  username: PropTypes.string.isRequired,
-  fullName: PropTypes.string.isRequired
+  username: PropTypes.string,
+  fullName: PropTypes.string
 };
