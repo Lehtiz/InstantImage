@@ -23,7 +23,8 @@ const User = ({ username, fullName }) =>
     </Link>
   );
 
-export default User;
+// memoize User to prevent rendering unnecessarily
+export default memo(User);
 
 // require props with types for functionality
 User.propTypes = {
