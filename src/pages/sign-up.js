@@ -10,14 +10,14 @@ export default function SignUp() {
 
   // Fields required for sign up
   const [username, setUsername] = useState('');
-  const [fullname, setFullName] = useState('');
+  const [fullName, setFullName] = useState('');
   const [emailAddress, setEmailAddress] = useState('');
   const [password, setPassword] = useState('');
 
   const [error, setError] = useState('');
 
   // Basic validation on password and email fields being empty
-  const isInvalid = password === '' || emailAddress === '' || username === '' || fullname === '';
+  const isInvalid = password === '' || emailAddress === '' || username === '' || fullName === '';
 
   // prevent default form functionality and use our own
   // async because connection to firebase takes time
@@ -42,7 +42,7 @@ export default function SignUp() {
         await firebase.firestore().collection('users').add({
           userId: createdUserResult.user.uid,
           username: username.toLowerCase(),
-          fullname,
+          fullname: fullName,
           emailAddress: emailAddress.toLowerCase(),
           following: [],
           dateCreated: Date.now()
@@ -96,7 +96,7 @@ export default function SignUp() {
               placeholder="Full name"
               className="text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2"
               onChange={({ target }) => setFullName(target.value)}
-              value={fullname}
+              value={fullName}
             />
             <input
               aria-label="Enter your email address"
