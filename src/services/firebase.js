@@ -11,3 +11,13 @@ export async function doesUsernameExist(username) {
   // returns all fields from query, if any values pop up user exists
   return result.docs.map((user) => user.data().length > 0);
 }
+
+export async function getUserByUserId(userId) {
+  const result = await firebase.firestore().collection('users').where('userId', '==', userId).get();
+  const user = result.docs.map((item) => ({
+    ...item.data(),
+    docId: item.id
+  }));
+
+  return user;
+}
