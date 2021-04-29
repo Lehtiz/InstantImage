@@ -22,3 +22,44 @@ export async function getUserByUserId(userId) {
 
   return user;
 }
+
+export async function getSuggestedProfiles(userId, following) {
+  // Get 10 profiles (can include you own, cant filter better on firebase)
+  const result = await firebase.firestore().collection('users').limit(10).get();
+  // Filter out our profile and the profiles we are already following from the result
+  return result.docs
+    .map((user) => ({ ...user.data(), docId: user.id }))
+    .filter((profile) => profile.userId !== userId && !following.includes(profile.userId));
+}
+
+export async function updateLoggedInUserFollowing(
+  loggedInUserDocId, // Current user
+  profileId, // Target profile to follow
+  isFollowingProfile // Bool to check if already following to handle unfollow
+) {
+  return firebase
+    .firestore()
+    .collection('users')
+    .doc(loggedInUserDocId)
+    .update({
+      following: isFollowingProfile // Update field following
+        ? FieldValue.arrayRemove(profileId) // Remove following if already followed
+        : FieldValue.arrayUnion(profileId) // Add following if not followed already
+    });
+}
+
+export async function updateFollowedUserFollowers(
+  profileDocId, // Current profile to follow
+  loggedInUserDocId, // User who follows
+  isFollowingProfile // Bool to check if already following to handle unfollow
+) {
+  return firebase
+    .firestore()
+    .collection('users')
+    .doc(profileDocId)
+    .update({
+      followers: isFollowingProfile // Update field followers
+        ? FieldValue.arrayRemove(loggedInUserDocId) // Remove following if already followed
+        : FieldValue.arrayUnion(loggedInUserDocId) // Add following if not followed already
+    });
+}
