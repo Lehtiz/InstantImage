@@ -65,7 +65,7 @@ export default function AddComment({ docId, comments, setComments, commentInput 
 
 AddComment.propTypes = {
   docId: PropTypes.string.isRequired,
-  comments: PropTypes.string.isRequired,
+  comments: PropTypes.array.isRequired,
   setComments: PropTypes.func.isRequired,
   commentInput: PropTypes.object.isRequired
 };
