@@ -4,6 +4,7 @@ import * as ROUTES from './constants/routes';
 import useAuthListener from './hooks/use-auth-listener';
 import UserContext from './context/user';
 import ProtectedRoute from './helpers/protected-route';
+import ReactLoader from './components/loader';
 
 // lazy loading dynamically loads on request (can also omit .js)
 const Login = lazy(() => import('./pages/login'));
@@ -20,7 +21,7 @@ export default function App() {
     <UserContext.Provider value={{ user }}>
       <Router>
         {/* Suspense allows us to wait for loading and specify a loading state with fallback */}
-        <Suspense fallback={<p>Loading...</p>}>
+        <Suspense fallback={<ReactLoader />}>
           <Switch>
             <Route path={ROUTES.LOGIN} component={Login} />
             <Route path={ROUTES.SIGN_UP} component={SignUp} />
