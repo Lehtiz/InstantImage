@@ -16,8 +16,8 @@ export default function Comments({ docId, comments: allComments, posted, comment
           )
         }
         {
-          // Show up to 3 comment before cut off
-          comments.slice(0, 3).map((item) => (
+          // Show up to 3 latest comment before cut off
+          comments.slice(-3).map((item) => (
             <p key={`${item.comment}-${item.displayName}`} className="mb-1">
               <Link to={`/p/${item.displayName}`}>
                 <span className="mr-1 font-bold">{item.displayName}</span>
