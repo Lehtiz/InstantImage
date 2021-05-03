@@ -9,7 +9,7 @@ export async function doesUsernameExist(username) {
     .get();
 
   // returns all fields from query, if any values pop up user exists
-  return result.docs.map((user) => user.data().length > 0);
+  return result.docs.length > 0;
 }
 
 export async function getUserByUsername(username) {

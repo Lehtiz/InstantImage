@@ -25,8 +25,7 @@ export default function SignUp() {
     event.preventDefault();
 
     const usernameExists = await doesUsernameExist(username);
-    // returns empty array if user does not exist, use length of array to determine falsehood (js falsy values)
-    if (!usernameExists.length) {
+    if (!usernameExists) {
       try {
         const createdUserResult = await firebase
           .auth()
