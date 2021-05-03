@@ -17,5 +17,5 @@ export default function useUser(userId) {
     }
   }, [userId]); // Should the user change, we want ot switch the user
 
-  return { user: activeUser };
+  return { user: activeUser, setActiveUser };
 }
