@@ -54,17 +54,19 @@ export default function Header({
             alt={`${fullName} profile`}
           />
         ) : (
-          <img
-            className="rounded-full h-40 w-40 flex"
-            src="/images/avatars/default.jpg"
-            alt="Default profile"
-          />
+          <Skeleton count={1} width={160} height={160} />
         )}
       </div>
       <div className="flex items-center justify-center flex-col col-span-2">
         <div className="container flex items-center">
-          <p className="text-2xl mr-4">{profileUsername}</p>
-          {activeBtnFollow && (
+          {!profileUsername ? (
+            <Skeleton count={1} width={80} height={32} />
+          ) : (
+            <p className="text-2xl mr-4">{profileUsername}</p>
+          )}
+          {activeBtnFollow && isFollowingProfile === null ? (
+            <Skeleton count={1} width={80} height={32} />
+          ) : (
             <button
               className=" bg-blue-medium font-bold text-sm rounded text-white w-20 h-8"
               type="button"
