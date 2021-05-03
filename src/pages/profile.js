@@ -14,6 +14,7 @@ export default function Profile() {
   useEffect(() => {
     async function checkUserExists() {
       const [user] = await getUserByUsername(username);
+      // Conditional here prevents accessing userId if user is undefined
       if (user?.userId) {
         setUser(user);
       } else {

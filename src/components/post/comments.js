@@ -12,6 +12,7 @@ export default function Comments({ docId, comments: allComments, posted, comment
         {
           // If there are too many comments show a link to thread
           comments.length >= 3 && (
+            // TODO: add link to photos
             <p className="text-sm text-gray-base mb-1 cursor-pointer">View all comments</p>
           )
         }
