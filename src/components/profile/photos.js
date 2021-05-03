@@ -8,7 +8,7 @@ export default function Photos({ photos }) {
       <div className="grid grid-cols-3 gap-8 mt-4 mb-12">
         {!photos ? (
           <>
-            <Skeleton count={12} width={320} height={400} />
+            <Skeleton count={12} width="100%" height="125%" />
           </>
         ) : photos.length > 0 ? (
           photos.map((photo) => (

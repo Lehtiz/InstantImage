@@ -13,7 +13,7 @@ export default function Timeline() {
   return (
     <div className="container col-span-2">
       {!photos ? (
-        <Skeleton count={4} width={640} height={500} className="mb-5" />
+        <Skeleton count={4} width="100%" height="270%" className="mb-5" />
       ) : photos.length > 0 ? (
         // If we have photos render them
         photos.map((content) => <Post key={content.docId} content={content} />)
