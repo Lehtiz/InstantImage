@@ -15,10 +15,10 @@ export default function AddComment({ docId, comments, setComments, commentInput 
 
     // explanation for setComments
     // "give me an array []"
-    // "put the new comment in there"
     // "add the old comments"
+    // "put the new comment in there"
     // "then we have a  new array with the new comment and the older comments"
-    setComments([{ displayName, comment }, ...comments]);
+    setComments([...comments, { displayName, comment }]);
     // clear state of the comment input after posting
     setComment('');
 
