@@ -7,6 +7,7 @@ import {
   getUserByUserId
 } from '../../services/firebase';
 import LoggedInUserContext from '../../context/logged-in-user';
+import { DEFAULT_IMAGE_PATH } from '../../constants/paths';
 
 export default function SuggestedProfile({
   profileDocId,
@@ -31,7 +32,14 @@ export default function SuggestedProfile({
   return !followed ? (
     <div className="flex flex-row items-center align-items justify-between">
       <div className="flex items-center justify-between">
-        <img className="rounded-full w-8 mr-3" src={`/images/avatars/${username}.jpg`} alt="" />
+        <img
+          className="rounded-full w-8 mr-3"
+          src={`/images/avatars/${username}.jpg`}
+          alt={`${username}`}
+          onError={(e) => {
+            e.target.src = DEFAULT_IMAGE_PATH;
+          }}
+        />
         <Link to={`/p/${username}`}>
           <p className="font-bold text-sm">{username}</p>
         </Link>
