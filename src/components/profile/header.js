@@ -24,7 +24,7 @@ export default function Header({
   const { user } = useUser(loggedInUser?.uid);
   const [isFollowingProfile, setIsFollowingProfile] = useState(false);
   // Logic for showing follow/unfollow button, don't show for self or for non logged in user
-  const activeBtnFollow = user && user.username && user.username !== profileUsername;
+  const activeBtnFollow = user && user?.username && user?.username !== profileUsername;
 
   const handleToggleFollow = async () => {
     setIsFollowingProfile((isFollowingProfile) => !isFollowingProfile);
@@ -72,9 +72,7 @@ export default function Header({
           ) : (
             <p className="text-2xl mr-4">{profileUsername}</p>
           )}
-          {activeBtnFollow && isFollowingProfile === null ? (
-            <Skeleton count={1} width={80} height={32} />
-          ) : (
+          {activeBtnFollow && (
             <button
               className=" bg-blue-medium font-bold text-sm rounded text-white w-20 h-8"
               type="button"
