@@ -10,7 +10,7 @@ export default function Dashboard({ user: loggedInuser }) {
   const { user, setActiveUser } = useUser(loggedInuser.uid);
 
   useEffect(() => {
-    document.title = 'Instagram';
+    document.title = 'Instant Image';
   }, [user?.userId]);
 
   return (

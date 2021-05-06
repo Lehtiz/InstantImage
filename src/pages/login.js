@@ -35,7 +35,7 @@ export default function Login() {
   // Runs on 1st render, can use brackets to run everytime given value changes
   // Change title to "Login - Instagram"
   useEffect(() => {
-    document.title = 'Login - Instagram';
+    document.title = 'Login - Instant Image';
   }, []);
 
   return (

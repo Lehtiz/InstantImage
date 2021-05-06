@@ -66,7 +66,7 @@ export default function SignUp() {
   // Runs on 1st render, can use brackets to run everytime given value changes
   // Change title to "Login - Instagram"
   useEffect(() => {
-    document.title = 'Sign Up - Instagram';
+    document.title = 'Sign Up - Instant Image';
   }, []);
 
   return (
