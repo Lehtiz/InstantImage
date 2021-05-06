@@ -1,15 +1,23 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-plusplus */
-// NOTE: replace 'NvPY9M9MzFTARQ6M816YAzDJxZ72' with your Firebase auth user id (can be taken from Firebase)
 export function seedDatabase(firebase) {
     const users = [
       {
         userId: 'Jmwc3aSQqOSpPnw578M75f07qiF3',
-        username: 'leba',
-        fullName: 'Leba Lehtiz',
-        emailAddress: 'Lehtiz@gmail.com',
-        following: ['2'],
-        followers: ['2', '3', '4'],
+        username: 'test1',
+        fullName: 'tiny tester',
+        emailAddress: 'test1@test.te',
+        following: [],
+        followers: [],
+        dateCreated: Date.now()
+      },
+      {
+        userId: '4',
+        username: 'orwell',
+        fullName: 'George Orwell',
+        emailAddress: 'george@orwell.com',
+        following: [],
+        followers: ['NvPY9M9MzFTARQ6M816YAzDJxZ72'],
         dateCreated: Date.now()
       },
       {
@@ -67,6 +75,22 @@ export function seedDatabase(firebase) {
               comment: 'Would you mind if I used this picture?'
             }
           ],
+          userLatitude: '40.7128°',
+          userLongitude: '74.0060°',
+          dateCreated: Date.now()
+        });
+    }
+    for (let i = 1; i <= 3; ++i) {
+      firebase
+        .firestore()
+        .collection('photos')
+        .add({
+          photoId: i,
+          userId: 'Jmwc3aSQqOSpPnw578M75f07qiF3',
+          imageSrc: `/images/users/test1/${i}.jpg`,
+          caption: `test image: ${1}`,
+          likes: [],
+          comments: [],
           userLatitude: '40.7128°',
           userLongitude: '74.0060°',
           dateCreated: Date.now()
